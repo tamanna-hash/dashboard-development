@@ -13,17 +13,15 @@ const Stat = ({ stat, index }) => {
     trend:   isDark ? "text-green-100" : "text-gray-500",
   };
 
-  const gradientStyle = isDark
-    ? {
-        background: "linear-gradient(135deg, #022c0a 0%, #064e3b 40%, #047857 70%, #10b981 100%)",
-      }
+  const cardStyle = isDark
+    ? { background: "linear-gradient(135deg, #022c0a, #0b5e42)" }
     : undefined;
 
   return (
     <div className="h-full">
       <div
-        className={`${!isDark ? stat.color : ""} ${styles.wrapper} rounded-2xl p-6 h-full flex flex-col justify-between`}
-        style={gradientStyle}
+        className={`${!isDark ? stat.color : ""} ${styles.wrapper}  rounded-2xl p-6 h-full flex flex-col justify-between`}
+        style={cardStyle}
       >
         
         {/* Top row */}

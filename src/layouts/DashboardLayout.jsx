@@ -1,26 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import Sidebar from "../components/dashboard/Sidebar";
 import Navbar from "../components/dashboard/Navbar";
 import Dashboard from "../pages/Dashboard";
 
 const DashboardLayout = () => {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
   return (
     <>
-      <div className="flex min-h-screen bg-base-200">
-        {/* Sidebar */}
-        <aside className="w-64 bg-base-100 shadow-md">
-          <Sidebar />
-        </aside>
-
-        {/* Main area */}
-        <div className="flex flex-col flex-1">
-          {/* Navbar */}
-          <header className="h-16 bg-base-100 shadow-sm">
-            <Navbar />
+      <div className="flex min-h-screen poppins">
+        <Sidebar isOpen={sidebarOpen} setOpen={setSidebarOpen} />
+        <div className="flex flex-col flex-1 min-w-0 lg:ml-74 mt-2 mr-2">
+          <header className="sticky top-0 z-30 w-full bg-base-200 rounded-xl shrink-0">
+            <Navbar onMenuClick={() => setSidebarOpen(true)} />
           </header>
 
-          {/* Dashboard content */}
-          <main className="flex-1 p-6 overflow-y-auto">
+          <main className="p-6 lg:p-8 mt-2 bg-base-200 rounded-xl flex-1 min-h-screen">
             <Dashboard />
           </main>
         </div>

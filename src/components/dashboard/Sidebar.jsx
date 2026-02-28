@@ -1,126 +1,159 @@
 import React, { useState } from "react";
-import { MdDashboard, MdCheckCircle, MdCalendarToday, MdBarChart, MdPeople, MdSettings, MdHelp, MdLogout, MdMenu, MdClose } from 'react-icons/md';
-import greenbg from '../../assets/greenbg.jpeg'; // Reusing your asset for the card
+import {
+  MdDashboard,
+  MdCheckCircle,
+  MdCalendarToday,
+  MdBarChart,
+  MdPeople,
+  MdSettings,
+  MdHelp,
+  MdLogout,
+  MdMenu,
+  MdClose,
+} from "react-icons/md";
+import greenbg from "../../assets/greenbg.jpeg";
 
-const Sidebar = () => {
-    const [isOpen, setIsOpen] = useState(false);
+const Sidebar = ({ isOpen: isOpenProp, setOpen: setOpenProp }) => {
+  const [internalOpen, setInternalOpen] = useState(false);
+  const isOpen = isOpenProp !== undefined ? isOpenProp : internalOpen;
+  const setOpen = setOpenProp || setInternalOpen;
 
-    const menuItems = [
-        { icon: MdDashboard, label: 'Dashboard', active: true },
-        { icon: MdCheckCircle, label: 'Tasks', badge: '12+' },
-        { icon: MdCalendarToday, label: 'Calendar' },
-        { icon: MdBarChart, label: 'Analytics' },
-        { icon: MdPeople, label: 'Team' },
-    ];
+  const menuItems = [
+    { icon: MdDashboard, label: "Dashboard", active: true },
+    { icon: MdCheckCircle, label: "Tasks", badge: "12+" },
+    { icon: MdCalendarToday, label: "Calendar" },
+    { icon: MdBarChart, label: "Analytics" },
+    { icon: MdPeople, label: "Team" },
+  ];
 
-    const generalItems = [
-        { icon: MdSettings, label: 'Settings' },
-        { icon: MdHelp, label: 'Help' },
-        { icon: MdLogout, label: 'Logout' },
-    ];
+  const generalItems = [
+    { icon: MdSettings, label: "Settings" },
+    { icon: MdHelp, label: "Help" },
+    { icon: MdLogout, label: "Logout" },
+  ];
 
-    return (
-        <>
-            {/* Mobile Toggle Button */}
-            <button 
-                onClick={() => setIsOpen(!isOpen)}
-                className="lg:hidden fixed top-4 left-4 z-50 p-2 bg-white rounded-lg shadow-md border border-gray-100"
-            >
-                {isOpen ? <MdClose size={24} /> : <MdMenu size={24} />}
-            </button>
-
-            {/* Sidebar Container */}
-            <aside className={`
-                fixed lg:static inset-y-0 left-0 z-40
-                w-72 bg-white border-r border-gray-100 h-screen flex flex-col transition-transform duration-300
+  return (
+    <>
+      
+        {/* Mobile Toggle Button */}
+        <button
+          onClick={() => setOpen(!isOpen)}
+          className="lg:hidden fixed top-4 left-4 z-50 p-2 bg-white rounded-lg shadow-md border border-gray-100"
+        >
+          {isOpen ? <MdClose size={24} /> : <MdMenu size={24} />}
+        </button>
+        <aside
+          className={`
+                fixed top-0 left-0 z-45
+                w-72 border-r bg-base-200 mt-2 border-gray-100 h-screen flex flex-col transition-transform duration-300
+                rounded-r-2xl overflow-y-auto scrollbar-hide
                 ${isOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}
-            `}>
-                
-                {/* Logo Section */}
-                <div className="p-8 flex items-center gap-3">
-                    <div className="w-10 h-10 flex items-center justify-center">
-                        {/* Custom SVG Logo to match "Donezo" icon exactly */}
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" fill="#15803d"/>
-                            <path d="M12 6c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z" fill="#15803d"/>
-                        </svg>
-                    </div>
-                    <span className="text-2xl font-bold text-gray-800 tracking-tight">Donezo</span>
+            `}
+        >
+          {/* Logo Section */}
+          <div className="p-6 lg:p-8 flex items-center gap-3 shrink-0">
+            <div className="w-10 h-10 flex items-center justify-center rounded-full bg-[#14532D]">
+              <span className="text-white font-bold text-lg">D</span>
+            </div>
+            <span className="text-2xl font-semibold text-gray-800 tracking-tight">
+              Donezo
+            </span>
+          </div>
+
+          {/* Navigation Scroll Area */}
+          <div className="flex-1 px-4 overflow-y-auto scrollbar-hide">
+            <div className="mb-8">
+              <p className="text-sm text-gray-400 uppercase tracking-[2px] mb-4 px-3">
+                Menu
+              </p>
+              {menuItems.map((item, index) => (
+                <div key={index}>
+                  <button
+                    className={`group w-full flex items-center gap-4 pl-4 py-2 pr-4 rounded-r-xl transition-colors duration-150 text-left relative
+                                    ${
+                                      item.active
+                                        ? "border-l-4 border-[#14532D] rounded-md text-gray-700 font-semibold bg-transparent"
+                                        : "border-l-4 border-transparent text-gray-400 hover:bg-gray-100 hover:text-gray-700"
+                                    }
+                                `}
+                  >
+                    <item.icon
+                      className={`w-6 h-6 shrink-0 transition-colors ${item.active ? "text-[#14532D]" : "text-gray-500 group-hover:text-gray-700"}`}
+                    />
+                    <span className="flex-1 text-[15px]">{item.label}</span>
+                    {item.badge && (
+                      <span className="text-[10px] font-bold px-2 py-0.5 rounded-md min-w-7 text-center bg-[#14532D] text-white">
+                        {item.badge}
+                      </span>
+                    )}
+                  </button>
                 </div>
+              ))}
+            </div>
 
-                {/* Navigation Scroll Area */}
-                <div className="flex-1 px-6 overflow-y-auto custom-scrollbar">
-                    {/* Menu Section */}
-                    <div className="mb-10">
-                        <p className="text-[11px] font-bold text-gray-400 uppercase tracking-[2px] mb-6 px-4">Menu</p>
-                        {menuItems.map((item, index) => (
-                            <div key={index} className="relative group mb-2">
-                                {/* Active Indicator Pill */}
-                                {item.active && (
-                                    <div className="absolute left-[-24px] top-1/2 -translate-y-1/2 w-1.5 h-8 bg-green-800 rounded-r-full" />
-                                )}
-                                
-                                <button className={`
-                                    w-full flex items-center gap-4 px-4 py-3 rounded-xl transition-all duration-200
-                                    ${item.active ? 'text-gray-900 font-bold' : 'text-gray-400 font-medium hover:text-gray-600'}
-                                `}>
-                                    <item.icon className={`w-6 h-6 ${item.active ? 'text-green-700' : ''}`} />
-                                    <span className="flex-1 text-left text-[15px]">{item.label}</span>
-                                    {item.badge && (
-                                        <span className="bg-[#14532D] text-white text-[10px] font-bold px-1.5 py-0.5 rounded-md min-w-[24px] text-center">
-                                            {item.badge}
-                                        </span>
-                                    )}
-                                </button>
-                            </div>
-                        ))}
-                    </div>
+            <div>
+              <p className="text-[11px] font-semibold text-gray-400 uppercase tracking-[2px] mb-4 px-3">
+                General
+              </p>
+              {generalItems.map((item, index) => (
+                <button
+                  key={index}
+                  className="group w-full flex items-center gap-4 px-4 py-3 rounded-r-xl mb-1.5 text-gray-500 font-medium hover:bg-gray-100 hover:text-gray-700 transition-colors duration-150 text-left"
+                >
+                  <item.icon className="w-6 h-6 shrink-0 text-gray-500 group-hover:text-gray-700 transition-colors" />
+                  <span className="text-[15px]">{item.label}</span>
+                </button>
+              ))}
+            </div>
+          </div>
 
-                    {/* General Section */}
-                    <div>
-                        <p className="text-[11px] font-bold text-gray-400 uppercase tracking-[2px] mb-6 px-4">General</p>
-                        {generalItems.map((item, index) => (
-                            <button key={index} className="w-full flex items-center gap-4 px-4 py-3 rounded-xl mb-2 text-gray-400 font-medium hover:text-gray-600 transition-all">
-                                <item.icon className="w-6 h-6" />
-                                <span className="text-[15px]">{item.label}</span>
-                            </button>
-                        ))}
-                    </div>
-                </div>
+          {/* Bottom App Download Card */}
+          <div className="p-4 shrink-0">
+            <div
+              className="rounded-2xl p-5 relative overflow-hidden min-h-35 flex flex-col justify-end shadow-lg"
+              style={{
+                backgroundImage: `url(${greenbg})`,
+                backgroundSize: "cover",
+                backgroundColor: "#14532D",
+              }}
+            >
+              <div className="relative z-10">
+                <p className="text-white font-bold text-base leading-tight mb-1">
+                  Download our Mobile App
+                </p>
+                <p className="text-white/90 text-sm mb-4">
+                  Get easy in another way
+                </p>
+                <button className="w-full bg-[#14532D] text-white text-sm font-bold py-2.5 rounded-2xl hover:bg-opacity-90 transition-all flex items-center justify-center gap-2 border border-white/30">
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+                    />
+                  </svg>
+                  Download
+                </button>
+              </div>
+            </div>
+          </div>
+        </aside>
 
-                {/* Bottom App Download Card */}
-                <div className="p-6">
-                    <div 
-                        className="rounded-3xl p-5 relative overflow-hidden h-40 flex flex-col justify-end shadow-lg"
-                        style={{
-                            backgroundImage: `url(${greenbg})`,
-                            backgroundSize: 'cover'
-                        }}
-                    >
-                        <div className="absolute top-4 left-5 bg-white/20 p-1.5 rounded-lg backdrop-blur-sm">
-                           <MdDashboard className="text-white w-5 h-5" />
-                        </div>
-                        <div className="relative z-10">
-                            <p className="text-white font-bold text-sm leading-tight mb-3">
-                                Download our <br /> Mobile App
-                            </p>
-                            <button className="w-full bg-[#14532D] text-white text-xs font-bold py-2.5 rounded-xl hover:bg-opacity-90 transition-all">
-                                Download
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </aside>
-
-            {/* Overlay for mobile */}
-            {isOpen && (
-                <div 
-                    className="fixed inset-0 bg-black/20 backdrop-blur-sm z-30 lg:hidden"
-                    onClick={() => setIsOpen(false)}
-                />
-            )}
-        </>
-    );
+        {/* Overlay for mobile */}
+        {isOpen && (
+          <div
+            className="fixed inset-0 bg-black/20 backdrop-blur-sm z-30 lg:hidden"
+            onClick={() => setOpen(false)}
+          />
+        )}
+    </>
+  );
 };
 
 export default Sidebar;

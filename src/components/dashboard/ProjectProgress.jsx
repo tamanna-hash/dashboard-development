@@ -8,12 +8,12 @@ const ProjectProgress = () => {
   const completedSegmentValue = 77.3;
 
   return (
-    <div className="bg-white col-span-3 rounded-[24px] p-6 border border-gray-100 shadow-sm flex flex-col h-full">
-      <h3 className="text-lg font-bold text-gray-800 mb-4">Project Progress</h3>
+    <div className="bg-white rounded-2xl py-6 px-3 border border-gray-100 shadow-sm flex flex-col min-h-0">
+      <h3 className="text-lg font-bold text-gray-800 mb-5 shrink-0">Project Progress</h3>
 
-      <div className="relative flex flex-col items-center justify-center flex-1">
+      <div className="relative flex flex-col items-center justify-center flex-1 min-h-0 py-2">
         {/* SVG Gauge */}
-        <svg viewBox="0 0 160 100" className="w-full max-w-[240px]">
+        <svg viewBox="0 0 160 100" className="w-full max-w-55 shrink-0">
           {/* Define the hatched pattern */}
           <defs>
             <pattern
@@ -74,14 +74,14 @@ const ProjectProgress = () => {
       </div>
 
       {/* Legend */}
-      <div className="flex items-center justify-between mt-4 px-2">
+      <div className="flex items-center justify-between mt-5 pt-4 shrink-0 border-t border-gray-100">
         <div className="flex items-center gap-2">
           <div className="w-3 h-3 bg-[#15803d] rounded-full"></div>
           <span className="text-[11px] font-bold text-gray-500">Completed</span>
         </div>
         <div className="flex items-center gap-2">
           <div className="w-3 h-3 bg-[#064E3B] rounded-full"></div>
-          <span className="text-[11px] font-bold text-gray-500">In Progress</span>
+          <span className="text-[11px] font-bold text-gray-500">InProgress</span>
         </div>
         <div className="flex items-center gap-2">
           <div 

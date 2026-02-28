@@ -8,8 +8,7 @@ const TimeTracker = () => {
       
 
       {/* Time Tracker with your Image Asset */}
-      <div 
-        className="rounded-[24px] p-6 text-white relative overflow-hidden h-[240px] flex flex-col justify-between shadow-xl"
+      <div className="rounded-3xl p-6 text-white relative overflow-hidden min-h-55 flex flex-col justify-between shadow-lg"
         style={{
           backgroundImage: `url(${greenbg})`,
           backgroundSize: 'cover',
@@ -24,7 +23,7 @@ const TimeTracker = () => {
         </h3>
         
         <div className="text-center relative z-10">
-          <div className="text-[52px] font-bold tracking-tighter mb-6 leading-none">
+          <div className="text-5xl font-semibold tracking-tighter mb-6 leading-none">
             01:24:08
           </div>
           

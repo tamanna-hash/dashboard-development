@@ -8,16 +8,16 @@ const TeamCollaboration = ({ users }) => {
   const avatars = [avatar1, avatar2, avatar3, avatar4, avatar5];
   console.log(users);
   return (
-    <div className="bg-white col-span-4 rounded-2xl p-6 border border-gray-200">
-      <div className="flex items-center justify-between mb-6">
-        <h3 className="text-lg font-semibold text-gray-900">
+    <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm flex flex-col h-full">
+      <div className="flex items-center justify-between mb-5 shrink-0">
+        <h3 className="text-lg font-semibold text-gray-800">
           Team Collaboration
         </h3>
-        <button className="text-sm px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
+        <button className="bg-white px-3 sm:px-4 py-1 sm:py-1 rounded-full text-sm border-2 border-[#14532D] text-[#14532D] hover:bg-gray-50 transition-colors">
           + Add Member
         </button>
       </div>
-      <div className="space-y-4">
+      <div className="space-y-3 flex-1 min-h-0 overflow-auto scrollbar-hide">
         {users?.map((user, index) => (
           <div key={index} className="flex items-center justify-between">
             <div className="flex items-center gap-3">

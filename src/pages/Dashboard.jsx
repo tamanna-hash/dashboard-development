@@ -3,12 +3,13 @@ import { useEffect, useState } from "react";
 import { FiTrendingUp, FiArrowUpRight } from "react-icons/fi";
 import { MdPlayArrow, MdPause, MdStop } from "react-icons/md";
 import api from "../services/api";
-import Stat from "../components/dashboard/Stat";
+import Stat from "../components/dashboard/Stats";
 import ProjectAnalytics from "../components/dashboard/ProjectAnalytics";
 import ProjectProgress from "../components/dashboard/ProjectProgress";
 import TimeTracker from "../components/dashboard/TimeTracker";
 import Projects from "../components/dashboard/Projects";
 import TeamCollaboration from "../components/dashboard/TeamCollaboration";
+import Reminder from "../components/dashboard/Reminder";
 
 const Dashboard = () => {
   const [data, setData] = useState();
@@ -84,106 +85,59 @@ const Dashboard = () => {
     },
   ];
 
-  //   const team = [
-  //     {
-  //       name: "Alexandra Deff",
-  //       task: "Github Project Repository",
-  //       status: "Completed",
-  //       avatar: "AD",
-  //     },
-  //     {
-  //       name: "Edwin Adenike",
-  //       task: "Integrate User Authentication System",
-  //       status: "In Progress",
-  //       avatar: "EA",
-  //     },
-  //     {
-  //       name: "Isaac Oluwatemiloun",
-  //       task: "Develop User Profile Functionality",
-  //       status: "Pending",
-  //       avatar: "IO",
-  //     },
-  //     {
-  //       name: "David Oshooli",
-  //       task: "Responsive Layout for Homepage",
-  //       status: "In Progress",
-  //       avatar: "DO",
-  //     },
-  //   ];
-
-  return (
-    <div className="flex-1 bg-gray-50 p-8 overflow-auto">
-      <div className="flex md:flex-row flex-col items-center justify-between mb-8">
+return (
+    <div className="flex-1">
+      {/* Header Section - match design exactly */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Dashboard</h1>
-          <p className="text-gray-500">
+          <h1 className="text-3xl font-semibold text-gray-900 leading-tight">Dashboard</h1>
+          <p className="text-sm sm:text-base text-gray-400 mt-1">
             Plan, prioritize, and accomplish your tasks with ease.
           </p>
         </div>
-        <div className="flex gap-3">
-          <button className="bg-green-700 text-white px-6 py-2.5 rounded-lg font-medium hover:bg-green-800 flex items-center gap-2">
+        <div className="flex gap-3 shrink-0">
+          <button className="bg-[#14532D] text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-full  text-sm hover:bg-green-800 transition-colors flex items-center gap-2 shadow-sm">
             + Add Project
           </button>
-          <button className="bg-white text-gray-700 px-6 py-2.5 rounded-lg font-medium border border-gray-300 hover:bg-gray-50">
+          <button className="bg-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-full text-sm border-2 border-[#14532D] text-[#14532D] hover:bg-gray-50 transition-colors">
             Import Data
           </button>
         </div>
       </div>
-      {/* project stats */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 items-stretch">
+
+      {/* Stat Cards Row - gap-2 = 24px like design */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 mb-3">
         {stats.map((stat, index) => (
-          <Stat stat={stat} index={index}></Stat>
+          <Stat key={index} stat={stat} index={index} />
         ))}
       </div>
 
-      <div className="items-start grid grid-cols-2 md:grid-cols-12 gap-4 mb-8">
-        <div className="col-span-9">
-          {/* Project Analysis and Reminders Container */}
-          <div className="grid grid-cols-9 gap-6 items-stretch">
-            {/* Project Analysis - Takes up 6 of 9 columns */}
-            <div className="col-span-6">
+      {/* Main Body Grid - consistent 24px gap */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-2 items-start">
+        
+        <div className="lg:col-span-9 space-y-3">
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+            <div className="md:col-span-2">
               <ProjectAnalytics />
             </div>
-
-            {/* Reminders - Takes up 3 of 9 columns */}
-            <div className="col-span-3 bg-white rounded-3xl p-6 border border-gray-100 shadow-sm flex flex-col justify-between">
-              <div>
-                <h3 className="text-lg font-bold text-gray-900 mb-6">
-                  Reminders
-                </h3>
-                <div className="mb-4">
-                  <h4 className="text-xl font-bold text-[#1a1a1a] mb-1 leading-tight">
-                    Meeting with Arc Company
-                  </h4>
-                  <p className="text-sm text-gray-400 font-medium">
-                    Time : 02.00 pm - 04.00 pm
-                  </p>
-                </div>
-              </div>
-
-              <button className="w-full bg-[#14532D] text-white py-3.5 rounded-2xl font-semibold hover:bg-opacity-90 flex items-center justify-center gap-2 transition-all">
-                <div className="bg-white/20 p-1 rounded-md">
-                  <MdPlayArrow className="w-5 h-5 fill-white" />
-                </div>
-                Start Meeting
-              </button>
-            </div>
+            {/* Reminders Card - padding/gap match design */}
+            <Reminder/>
           </div>
-          {/* team collaboration and project progress  */}
-          <div className="items-start grid grid-cols-7">
-            {/* team collaboration */}
-            <TeamCollaboration users={data?.users}/>
-            {/* project progress */}
-            <ProjectProgress/>
+
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-2 items-stretch">
+            <div className="md:col-span-7">
+              <TeamCollaboration users={data?.users} />
+            </div>
+            <div className="md:col-span-5">
+              <ProjectProgress />
+            </div>
           </div>
         </div>
 
-        {/* project and time tracker */}
-        <div className="col-span-3">
-          {/* project */}
-          <Projects/>
-          {/* time tracker */}
-          <TimeTracker/>
+        <div className="lg:col-span-3 space-y-3">
+          <Projects />
+          <TimeTracker />
         </div>
       </div>
     </div>
