@@ -58,7 +58,7 @@ const Sidebar = ({ isOpen: isOpenProp, setOpen: setOpenProp }) => {
         </div>
 
         {/* Navigation Scroll Area */}
-        <div className="flex-1 px-4 overflow-y-auto scrollbar-hide">
+        <div className="flex-1 px-4 -ml-4 overflow-y-auto scrollbar-hide">
           <div className="mb-8">
             <p className="text-sm text-gray-400 uppercase tracking-[2px] mb-4 px-3">
               Menu
