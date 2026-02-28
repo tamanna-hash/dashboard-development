@@ -3,6 +3,7 @@ import Login from "../pages/Login";
 import Dashboard from "../pages/Dashboard";
 import ProtectedRoute from "../components/ProtectedRoute";
 import DashboardLayout from "../layouts/DashboardLayout";
+import ErrorPage from "../pages/ErrorPAge";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -16,5 +17,9 @@ export const router = createBrowserRouter([
         element: <DashboardLayout />,
       },
     ],
+  },
+  {
+    path: "/*",
+    element: <ErrorPage />,
   },
 ]);

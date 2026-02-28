@@ -16,7 +16,7 @@ const Navbar = ({ onMenuClick }) => {
             <FiMenu className="w-6 h-6" />
           </button>
         )}
-        <div className="relative flex-1 max-w-md">
+        <div className="relative flex-1 max-w-sm">
           <FiSearch className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" />
           <input
             type="text"
@@ -31,10 +31,10 @@ const Navbar = ({ onMenuClick }) => {
 
       {/* Right: actions + profile */}
       <div className="flex items-center gap-1 sm:gap-2 shrink-0">
-        <button type="button" className="p-2 sm:p-2.5 hover:bg-gray-100 bg-white rounded-full text-gray-600 transition-colors" aria-label="Messages">
+        <button type="button" className="p-2 sm:p-2.5 hover:bg-gray-200 bg-white rounded-full text-gray-600 transition-colors" aria-label="Messages">
           <FiMail className="w-5 h-5" />
         </button>
-        <button type="button" className="p-2 sm:p-2.5 hover:bg-gray-100 bg-white rounded-full text-gray-600 transition-colors" aria-label="Notifications">
+        <button type="button" className="p-2 sm:p-2.5 hover:bg-gray-200 bg-white rounded-full text-gray-600 transition-colors" aria-label="Notifications">
           <FiBell className="w-5 h-5" />
         </button>
         <div className="flex items-center gap-2 sm:gap-3 ml-1 sm:ml-2 pl-2 sm:pl-0 border-l border-gray-100">

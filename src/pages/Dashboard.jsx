@@ -30,24 +30,28 @@ const Dashboard = () => {
     {
       title: "Total Projects",
       value: "24",
+      badge:"5",
       trend: "Increased from last month",
       color: "bg-green-700",
     },
     {
       title: "Ended Projects",
       value: "10",
+      badge:"6",
       trend: "Increased from last month",
       color: "bg-white",
     },
     {
       title: "Running Projects",
       value: "12",
+      badge:"2",
       trend: "Increased from last month",
       color: "bg-white",
     },
     {
       title: "Pending Project",
       value: "2",
+      badge:"",
       trend: "On Discuss",
       color: "bg-white",
     },
@@ -65,10 +69,10 @@ return (
           </p>
         </div>
         <div className="flex gap-3 shrink-0">
-          <button className="bg-linear-to-b from-[#124c29] via-[#195b32] to-[#28864d] text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-full  text-sm hover:bg-green-800 transition-colors flex items-center gap-2 shadow-sm">
+          <button className="bg-linear-to-b from-[#124c29] via-[#195b32] to-[#28864d] hover:brightness-110 text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-full  text-sm transition-colors flex items-center gap-2 shadow-sm">
             + Add Project
           </button>
-          <button className="bg-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-full text-sm border-2 border-[#14532D] text-[#14532D] hover:bg-gray-50 transition-colors">
+          <button className="bg-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-full text-sm border-2 border-[#14532D] text-[#14532D] hover:bg-slate-100 transition-colors">
             Import Data
           </button>
         </div>

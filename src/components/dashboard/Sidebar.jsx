@@ -12,7 +12,7 @@ import {
   MdClose,
 } from "react-icons/md";
 import greenbg from "../../assets/greenbg.jpeg";
-
+import logo from '../../assets/logo_icon.png'
 const Sidebar = ({ isOpen: isOpenProp, setOpen: setOpenProp }) => {
   const [internalOpen, setInternalOpen] = useState(false);
   const isOpen = isOpenProp !== undefined ? isOpenProp : internalOpen;
@@ -44,16 +44,14 @@ const Sidebar = ({ isOpen: isOpenProp, setOpen: setOpenProp }) => {
       <aside
         className={`
                 fixed top-0 left-0 z-45
-                w-72 border-r bg-gray-100 mt-2 border-gray-100 h-screen flex flex-col transition-transform duration-300
+                w-70 border-r rounded-2xl mx-2 bg-gray-100 mt-2 border-gray-100 h-screen flex flex-col transition-transform duration-300
                 rounded-r-2xl overflow-y-auto scrollbar-hide
                 ${isOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}
             `}
       >
         {/* Logo Section */}
-        <div className="p-6 lg:p-8 flex items-center gap-3 shrink-0">
-          <div className="w-10 h-10 flex items-center justify-center rounded-full bg-[#14532D]">
-            <span className="text-white font-bold text-lg">D</span>
-          </div>
+        <div className="p-6 mt-5 md:mt-0 ml-3 md:ml-0 flex items-center gap-3 shrink-0">
+          <img src={logo} alt="logo" className="h-12 w-12" />
           <span className="text-2xl font-semibold text-gray-800 tracking-tight">
             Donezo
           </span>
@@ -71,11 +69,11 @@ const Sidebar = ({ isOpen: isOpenProp, setOpen: setOpenProp }) => {
                   className={`group w-full flex items-center gap-4 py-2 px-8 transition-all duration-200 text-left relative
                     ${
                         item.active
-                          ? "text-gray-700 font-semibold"
-                          : "text-gray-400 font-medium hover:text-gray-700 hover:bg-gray-50/50"
+                          ? "text-gray-700 font-medium"
+                          : "text-gray-400  hover:text-gray-700 hover:bg-gray-50/50"
                     }`}
                 >
-                  {/* The Active Indicator Pill - Exactly like the image */}
+                  {/* The Active Indicator Pill */}
                   {item.active && (
                     <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-10 bg-[#14532D] rounded-r-full shadow-[2px_0_8px_rgba(20,83,45,0.2)]" />
                   )}
@@ -102,7 +100,7 @@ const Sidebar = ({ isOpen: isOpenProp, setOpen: setOpenProp }) => {
             {generalItems.map((item, index) => (
               <button
                 key={index}
-                className="group w-full flex items-center gap-4 px-4 py-3 rounded-r-xl mb-1.5 text-gray-500 font-medium hover:bg-gray-100 hover:text-gray-700 transition-colors duration-150 text-left"
+                className="group w-full flex items-center gap-4 px-4 py-3 rounded-r-xl mb-1.5 text-gray-500 font-medium hover:bg-gray-50/50 hover:text-gray-700 transition-colors duration-150 text-left"
               >
                 <item.icon className="w-6 h-6 shrink-0 text-gray-500 group-hover:text-gray-700 transition-colors" />
                 <span className="text-[15px]">{item.label}</span>

@@ -5,7 +5,7 @@ const ProjectProgress = () => {
   // Radius: 60. Arc Length = PI * 60 ≈ 188.5
   const totalArcLength = 188.5;
   // Completed segment for 41%: 188.5 * 0.41 ≈ 77.3
-  const completedSegmentValue = 77.3;
+  const completedSegmentValue = 90.3;
 
   return (
     <div className="bg-white rounded-2xl py-6 px-3 border border-gray-100 shadow-sm flex flex-col min-h-0">
@@ -34,7 +34,7 @@ const ProjectProgress = () => {
             </pattern>
           </defs>
 
-          {/* Background Track (The "Hatched" Pending part from the image) */}
+          {/* Background Track */}
           <path
             d="M 20 80 A 60 60 0 0 1 140 80"
             fill="none"
@@ -74,7 +74,7 @@ const ProjectProgress = () => {
       </div>
 
       {/* Legend */}
-      <div className="flex items-center justify-between mt-5 pt-4 shrink-0 border-t border-gray-100">
+      <div className="flex flex-col md:flex-row items-center justify-between mt-5 pt-4 shrink-0 border-t border-gray-100">
         <div className="flex items-center gap-2">
           <div className="w-3 h-3 bg-[#15803d] rounded-full"></div>
           <span className="text-[11px] font-bold text-gray-500">Completed</span>

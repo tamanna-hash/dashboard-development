@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { FiEye, FiEyeOff } from "react-icons/fi";
+import { FiEye, FiEyeOff, FiZap } from "react-icons/fi";
 import { useNavigate } from "react-router";
 import api from "../services/api";
+import logo from "../assets/logo_icon.png";
 
 export default function LoginPage() {
   const navigate = useNavigate();
@@ -10,6 +11,13 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false);
   const [err, setErr] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+
+  const handleDemoLogin = () => {
+    setEmail("user1@example.com");
+    setPassword("password123");
+    setErr("");
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -19,8 +27,6 @@ export default function LoginPage() {
       localStorage.setItem("token", res.data.token);
       navigate("/dashboard");
       console.log("Submitting:", { email, password });
-
-      // Example: await signIn(email, password);
     } catch (error) {
       console.error("Login failed:", error);
       setErr("Invalid email or password");
@@ -32,23 +38,13 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen bg-linear-to-br from-green-50 to-emerald-100 flex items-center justify-center px-4 py-12">
       <div className="w-full max-w-md">
-        {/* Logo / Brand mark */}
-        <div className="flex justify-center mb-8">
-          <div className="w-14 h-14 rounded-2xl bg-green-500 flex items-center justify-center shadow-lg shadow-green-200">
-            <svg
-              className="w-7 h-7 text-white"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={2}
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M5.121 17.804A9 9 0 1118.88 6.196M15 11l-3 3-3-3"
-              />
-            </svg>
-            {/* <img src="/public/dashboardicon.jpeg" className="w-7 h-7 text-white" alt="dashboard image" /> */}
+        {/* Logo */}
+        <div className="flex flex-col items-center justify-center">
+          <div className="p-6 flex items-center gap-3 shrink-0">
+            <img src={logo} alt="logo" className="h-12 w-12" />
+            <span className="text-2xl font-semibold text-gray-800 tracking-tight">
+              Donezo
+            </span>
           </div>
         </div>
 
@@ -62,6 +58,23 @@ export default function LoginPage() {
             <p className="text-sm text-gray-400 mt-1.5">
               Sign in to continue to your account
             </p>
+          </div>
+
+          {/* Demo Login Button */}
+          <button
+            type="button"
+            onClick={handleDemoLogin}
+            className="w-full mb-5 py-2.5 px-4 rounded-lg border border-green-300 bg-green-50 hover:bg-green-100 active:bg-green-200 text-green-700 text-sm font-semibold tracking-wide transition-all duration-150 flex items-center justify-center gap-2"
+          >
+            <FiZap className="w-4 h-4" />
+            Try Demo Account
+          </button>
+
+          {/* Divider */}
+          <div className="flex items-center gap-3 mb-5">
+            <div className="flex-1 h-px bg-green-100" />
+            <span className="text-xs text-gray-400 font-medium">OR</span>
+            <div className="flex-1 h-px bg-green-100" />
           </div>
 
           {/* Form */}
@@ -157,15 +170,8 @@ export default function LoginPage() {
             </button>
           </form>
 
-          {/* Divider */}
-          <div className="flex items-center gap-3 my-6">
-            <div className="flex-1 h-px bg-green-100" />
-            <span className="text-xs text-gray-400 font-medium">OR</span>
-            <div className="flex-1 h-px bg-green-100" />
-          </div>
-
           {/* Sign Up Link */}
-          <p className="text-center text-sm text-gray-400">
+          <p className="text-center text-sm text-gray-400 mt-6">
             Don't have an account?{" "}
             <a
               href="#"
