@@ -6,7 +6,7 @@ const bars = [
   { day: "M", height: 70, type: "green-dark" },
   { day: "T", height: 60, type: "green-light", tooltip: "74%" },
   { day: "W", height: 85, type: "green-medium" },
-  { day: "T", height: 65, type: "hatched" },
+  { day: "T", height: 85, type: "hatched" },
   { day: "F", height: 55, type: "hatched" },
   { day: "S", height: 45, type: "hatched" },
 ];
@@ -14,7 +14,7 @@ const bars = [
 const barStyles = {
   hatched: {
     backgroundColor: "#F3F4F6",
-    backgroundImage: `repeating-linear-gradient(45deg, transparent, transparent 5px, rgba(209, 213, 219, 0.6) 5px, rgba(209, 213, 219, 0.6) 10px)`,
+    backgroundImage: `repeating-linear-gradient(45deg, transparent, transparent 5px, rgba(209, 213, 219, 3) 5px, rgba(209, 213, 219, 1) 10px)`,
   },
   "green-light": { backgroundColor: "#86EFAC" },
   "green-medium": { backgroundColor: "#14532D" },
