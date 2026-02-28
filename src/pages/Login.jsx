@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { FiEye, FiEyeOff } from "react-icons/fi";
 import { useNavigate } from "react-router";
 import api from "../services/api";
 
@@ -8,6 +9,7 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [err, setErr] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -100,16 +102,30 @@ export default function LoginPage() {
                   Forgot password?
                 </a>
               </div>
-              <input
-                id="password"
-                type="password"
-                placeholder="••••••••"
-                className="w-full px-4 py-2.5 text-sm rounded-lg border border-green-200 bg-green-50/40 text-gray-800 placeholder-gray-400 outline-none transition focus:border-green-400 focus:ring-2 focus:ring-green-100 hover:border-green-300"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                autoComplete="current-password"
-              />
+              <div className="relative">
+                <input
+                  id="password"
+                  type={showPassword ? "text" : "password"}
+                  placeholder="••••••••"
+                  className="w-full pr-10 pl-4 py-2.5 text-sm rounded-lg border border-green-200 bg-green-50/40 text-gray-800 placeholder-gray-400 outline-none transition focus:border-green-400 focus:ring-2 focus:ring-green-100 hover:border-green-300"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                  autoComplete="current-password"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword((prev) => !prev)}
+                  className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-gray-600"
+                  aria-label={showPassword ? "Hide password" : "Show password"}
+                >
+                  {showPassword ? (
+                    <FiEyeOff className="w-4 h-4" />
+                  ) : (
+                    <FiEye className="w-4 h-4" />
+                  )}
+                </button>
+              </div>
             </div>
 
             {/* Remember me */}

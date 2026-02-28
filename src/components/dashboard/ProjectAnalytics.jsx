@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 const bars = [
   { day: "S", height: 50, type: "hatched" },
@@ -22,8 +23,13 @@ const barStyles = {
 
 const ProjectAnalytics = () => {
   return (
-    <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm flex-1 relative">
-      <h3 className="text-lg font-semibold text-gray-800 mb-8">
+    <motion.div
+      className="bg-white rounded-2xl px-6 py-3 border border-gray-100 shadow-sm flex-1 relative"
+      initial={{ opacity: 0, y: 32 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+    >
+      <h3 className="text-lg font-semibold text-gray-800 mb-2">
         Project Analytics
       </h3>
 
@@ -49,12 +55,12 @@ const ProjectAnalytics = () => {
               </div>
             )}
 
-            <div
-              className="w-full max-w-14 rounded-full transition-all duration-300"
-              style={{
-                height: `${bar.height}%`,
-                ...barStyles[bar.type],
-              }}
+            <motion.div
+              className="w-full max-w-14 rounded-full"
+              style={barStyles[bar.type]}
+              initial={{ height: 0 }}
+              animate={{ height: `${bar.height}%` }}
+              transition={{ duration: 0.9, delay: 0.15 + index * 0.08, ease: "easeOut" }}
             />
 
             <span className="text-[12px] text-gray-400 font-medium mt-3">
@@ -63,7 +69,7 @@ const ProjectAnalytics = () => {
           </div>
         ))}
       </div>
-    </div>
+    </motion.div>
   );
 };
 

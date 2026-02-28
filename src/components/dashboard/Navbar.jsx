@@ -21,7 +21,7 @@ const Navbar = ({ onMenuClick }) => {
           <input
             type="text"
             placeholder="Search task"
-            className="w-full pl-10 pr-12 py-2.5 sm:py-3 bg-gray-50 border border-gray-200 rounded-2xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500/20 focus:border-green-500 text-sm"
+            className="w-full pl-10 pr-12 py-2.5 sm:py-3 bg-white border border-gray-200 rounded-2xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500/20 focus:border-green-500 text-sm"
           />
           <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-gray-400 font-medium hidden sm:inline">
             ⌘F
@@ -30,18 +30,18 @@ const Navbar = ({ onMenuClick }) => {
       </div>
 
       {/* Right: actions + profile */}
-      <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
-        <button type="button" className="p-2 sm:p-2.5 hover:bg-gray-100 rounded-lg text-gray-600 transition-colors" aria-label="Messages">
+      <div className="flex items-center gap-1 sm:gap-2 shrink-0">
+        <button type="button" className="p-2 sm:p-2.5 hover:bg-gray-100 bg-white rounded-full text-gray-600 transition-colors" aria-label="Messages">
           <FiMail className="w-5 h-5" />
         </button>
-        <button type="button" className="p-2 sm:p-2.5 hover:bg-gray-100 rounded-lg text-gray-600 transition-colors" aria-label="Notifications">
+        <button type="button" className="p-2 sm:p-2.5 hover:bg-gray-100 bg-white rounded-full text-gray-600 transition-colors" aria-label="Notifications">
           <FiBell className="w-5 h-5" />
         </button>
         <div className="flex items-center gap-2 sm:gap-3 ml-1 sm:ml-2 pl-2 sm:pl-0 border-l border-gray-100">
           <img
             src={avatar2}
             alt="User"
-            className="w-9 h-9 sm:w-10 sm:h-10 rounded-full object-cover flex-shrink-0"
+            className="w-9 h-9 sm:w-10 sm:h-10 rounded-full object-cover shrink-0"
           />
           <div className="hidden sm:block min-w-0">
             <p className="text-sm font-bold text-gray-900 truncate">Totok Michael</p>

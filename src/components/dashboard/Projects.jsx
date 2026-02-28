@@ -2,7 +2,7 @@ import React from "react";
 
 const Projects = () => {
   return (
-    <div className="bg-white rounded-2xl px-6 pb-9 pt-6 border border-gray-100 shadow-sm">
+    <div className="bg-white rounded-2xl px-6 pb-9 pt-5 border border-gray-100 shadow-sm">
       <div className="flex items-center justify-between mb-6">
         <h3 className="text-lg font-semibold text-gray-800">Project</h3>
         <button className="text-[11px] font-semibold border border-[#14532D] text-[#14532D] px-3 py-1.5 rounded-full hover:bg-gray-50 uppercase tracking-wider">

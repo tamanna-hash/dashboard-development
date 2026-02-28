@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import { FiTrendingUp, FiArrowUpRight } from "react-icons/fi";
 import { MdPlayArrow, MdPause, MdStop } from "react-icons/md";
 import api from "../services/api";
@@ -52,38 +53,6 @@ const Dashboard = () => {
     },
   ];
 
-  const projects = [
-    {
-      title: "Develop API Endpoints",
-      date: "Due date: Nov 30, 2024",
-      icon: "⚡",
-      color: "text-blue-600",
-    },
-    {
-      title: "Onboarding Flow",
-      date: "Due date: Dec 1, 2024",
-      icon: "🎯",
-      color: "text-cyan-600",
-    },
-    {
-      title: "Build Dashboard",
-      date: "Due date: Nov 30, 2024",
-      icon: "✨",
-      color: "text-purple-600",
-    },
-    {
-      title: "Optimize Page Load",
-      date: "Due date: Dec 5, 2024",
-      icon: "🍕",
-      color: "text-yellow-600",
-    },
-    {
-      title: "Cross-Browser Testing",
-      date: "Due date: Dec 8, 2024",
-      icon: "🎨",
-      color: "text-pink-600",
-    },
-  ];
 
 return (
     <div className="flex-1">
@@ -96,7 +65,7 @@ return (
           </p>
         </div>
         <div className="flex gap-3 shrink-0">
-          <button className="bg-[#14532D] text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-full  text-sm hover:bg-green-800 transition-colors flex items-center gap-2 shadow-sm">
+          <button className="bg-linear-to-b from-[#124c29] via-[#195b32] to-[#28864d] text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-full  text-sm hover:bg-green-800 transition-colors flex items-center gap-2 shadow-sm">
             + Add Project
           </button>
           <button className="bg-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-full text-sm border-2 border-[#14532D] text-[#14532D] hover:bg-gray-50 transition-colors">
@@ -105,10 +74,19 @@ return (
         </div>
       </div>
 
-      {/* Stat Cards Row - gap-2 = 24px like design */}
+      {/* Stat Cards Row - subtle entrance + hover */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 mb-3">
         {stats.map((stat, index) => (
-          <Stat key={index} stat={stat} index={index} />
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: index * 0.06, ease: "easeOut" }}
+            whileHover={{ y: -4, scale: 1.01 }}
+            className="will-change-transform"
+          >
+            <Stat stat={stat} index={index} />
+          </motion.div>
         ))}
       </div>
 
@@ -117,27 +95,67 @@ return (
         
         <div className="lg:col-span-9 space-y-3">
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
-            <div className="md:col-span-2">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2 items-stretch">
+            <motion.div
+              className="md:col-span-2 h-full"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45, delay: 0.15, ease: "easeOut" }}
+            >
               <ProjectAnalytics />
-            </div>
+            </motion.div>
             {/* Reminders Card - padding/gap match design */}
-            <Reminder/>
+            <motion.div
+              className="h-full will-change-transform"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45, delay: 0.22, ease: "easeOut" }}
+              whileHover={{ y: -3, scale: 1.01 }}
+              
+            >
+              <Reminder />
+            </motion.div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-12 gap-2 items-stretch">
-            <div className="md:col-span-7">
+            <motion.div
+              className="md:col-span-7"
+              initial={{ opacity: 0, y: 22 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.28, ease: "easeOut" }}
+            >
               <TeamCollaboration users={data?.users} />
-            </div>
-            <div className="md:col-span-5">
+            </motion.div>
+            <motion.div
+              className="md:col-span-5"
+              initial={{ opacity: 0, y: 22 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.32, ease: "easeOut" }}
+            >
               <ProjectProgress />
-            </div>
+            </motion.div>
           </div>
         </div>
 
         <div className="lg:col-span-3 space-y-3">
-          <Projects />
-          <TimeTracker />
+          <motion.div
+            initial={{ opacity: 0, x: 18 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.45, delay: 0.18, ease: "easeOut" }}
+            whileHover={{ y: -3, scale: 1.01 }}
+            className="will-change-transform"
+          >
+            <Projects />
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, x: 18 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.45, delay: 0.24, ease: "easeOut" }}
+            whileHover={{ y: -3, scale: 1.01 }}
+            className="will-change-transform"
+          >
+            <TimeTracker />
+          </motion.div>
         </div>
       </div>
     </div>

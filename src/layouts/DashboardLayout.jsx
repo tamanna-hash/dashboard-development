@@ -11,11 +11,11 @@ const DashboardLayout = () => {
       <div className="flex min-h-screen poppins">
         <Sidebar isOpen={sidebarOpen} setOpen={setSidebarOpen} />
         <div className="flex flex-col flex-1 min-w-0 lg:ml-74 mt-2 mr-2">
-          <header className="sticky top-0 z-30 w-full bg-base-200 rounded-xl shrink-0">
+          <header className="sticky top-0 z-30 w-full bg-gray-100 rounded-xl shrink-0">
             <Navbar onMenuClick={() => setSidebarOpen(true)} />
           </header>
 
-          <main className="p-6 lg:p-8 mt-2 bg-base-200 rounded-xl flex-1 min-h-screen">
+          <main className="p-6 lg:p-8 mt-2 bg-gray-100 rounded-xl flex-1 min-h-screen">
             <Dashboard />
           </main>
         </div>
